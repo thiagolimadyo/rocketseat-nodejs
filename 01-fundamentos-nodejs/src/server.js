@@ -1,38 +1,25 @@
 import http from "node:http";
 import { json } from "./middlewares/json.js";
-import { Database } from "./database.js";
-import { randomUUID } from "node:crypto";
-
-const database = new Database();
+import { routes } from "./routes.js";
+import extractQueryParams from "./utils/extract-query-params.js";
 
 const server = http.createServer(async (req, res) => {
   const { method, url } = req;
 
   await json(req, res);
 
-  if (method === "GET" && url === "/users") {
-    // Early return -> Dentro de uma função, se houver algum RETURN, o que vier após não será executado
-    // console.log(req.headers);
+  const route = routes.find((el) => {
+    return el.method === method && el.url.test(url);
+  });
 
-    const users = await database.select("users");
+  if (route) {
+    const routeParams = req.url.match(route.url);
 
-    return res.end(JSON.stringify(users));
-    // return res.end(JSON.stringify(users));
-  }
+    const { query, ...params } = routeParams.groups;
+    req.params = params;
+    req.query = query ? extractQueryParams(query) : {};
 
-  if (method === "POST" && url === "/users") {
-    const { name, email } = req.body;
-
-    const user = {
-      id: randomUUID(),
-      name,
-      email,
-    };
-
-    const newUser = await database.insert("users", user);
-    // users.push(user);
-
-    return res.writeHead(201).end(JSON.stringify(newUser));
+    return route.handler(req, res);
   }
 
   res.writeHead(404).end();

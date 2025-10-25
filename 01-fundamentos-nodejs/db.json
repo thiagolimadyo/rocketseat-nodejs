@@ -1,1 +1,24 @@
-{"users":[{"id":"d0f51a01-49e6-4819-8b2e-4d97a7117d73","name":"Joana Dark","email":"joana.dark@intel.com"},{"id":"5f6d17ce-6491-46fd-b3ec-7451fc108d58","name":"Xuxa da Silva","email":"xuxa.silva@microsoft.com"},{"id":"4fd63730-a10f-4b92-9ece-852ed6e5a48d","name":"Lady Laura","email":"lady.laura@uol.com.br"},{"id":"eb17a42b-f117-4d72-8de1-4c7ca397d779","name":"Sivirina","email":"sivirina@globo.com"}]}
+{
+  "users": [
+    {
+      "id": "a834b4b2-8db4-4c19-986f-488242cc2749",
+      "name": "Joana Dark",
+      "email": "joana.d@intel.com"
+    },
+    {
+      "id": "94e7da51-1817-47a5-a53a-21e6f3d8fd53",
+      "name": "Pedro Álvares Cabral",
+      "email": "pedro.cabral@amd.com"
+    },
+    {
+      "id": "16eec210-5855-4a68-aff4-c962ff3b680c",
+      "name": "Samantha Raio Laser",
+      "email": "samantha.rl@amd.com"
+    },
+    {
+      "id": "eda95ba2-1d05-4c55-a36a-25c9f592fb38",
+      "name": "Maria Joaquina",
+      "email": "maria.joaquina@micron.com"
+    }
+  ]
+}

@@ -4,7 +4,7 @@ const databasePath = new URL("../db.json", import.meta.url);
 
 // console.log(databasePath);
 
-export class Database {
+export default class Database {
   #database = {};
 
   constructor() {
@@ -34,5 +34,29 @@ export class Database {
     this.#persist();
 
     return data;
+  }
+
+  async delete(table, id) {
+    const index = this.#database[table].findIndex((el) => el.id === id);
+    console.log(id);
+    if (index > -1) {
+      this.#database[table].splice(index, 1);
+      this.#persist();
+      return index;
+    }
+
+    return;
+  }
+
+  async update(table, id, data) {
+    const index = this.#database[table].findIndex((el) => el.id === id);
+
+    if (index > -1) {
+      this.#database[table].splice(index, 1, { id, ...data });
+      this.#persist();
+      return;
+    }
+
+    return;
   }
 }
